@@ -1,4 +1,4 @@
-# This is a homework from Interview for Air New Zealand.
+# Air New Zealand interview take-home assignment.
 
 A professional, scalable, and maintainable test automation framework for Air New Zealand web application. This framework supports UI testing, API testing, and BDD (Behavior-Driven Development) with Cucumber.
 
