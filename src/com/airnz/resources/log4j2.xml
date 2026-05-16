@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="LOG_DIR">logs</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n</Property>
+        <Property name="LOG_PATTERN_COLORED">%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{[%t] %-5level} %style{%logger{36}}{cyan} - %msg%n</Property>
+    </Properties>
+    
+    <Appenders>
+        <!-- Console Appender with colored output -->
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN_COLORED}"/>
+        </Console>
+        
+        <!-- Rolling File Appender for all logs -->
+        <RollingFile name="RollingFile" 
+                     fileName="${LOG_DIR}/airnz-automation.log"
+                     filePattern="${LOG_DIR}/airnz-automation-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+        
+        <!-- Separate file for error logs -->
+        <RollingFile name="ErrorFile" 
+                     fileName="${LOG_DIR}/airnz-errors.log"
+                     filePattern="${LOG_DIR}/airnz-errors-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+        
+        <!-- Separate file for test execution logs -->
+        <RollingFile name="TestExecutionFile" 
+                     fileName="${LOG_DIR}/test-execution.log"
+                     filePattern="${LOG_DIR}/test-execution-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+        
+        <!-- Separate file for API logs -->
+        <RollingFile name="ApiFile" 
+                     fileName="${LOG_DIR}/api-requests.log"
+                     filePattern="${LOG_DIR}/api-requests-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"/>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="7"/>
+        </RollingFile>
+    </Appenders>
+    
+    <Loggers>
+        <!-- Framework specific loggers -->
+        <Logger name="com.airnz" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </Logger>
+        
+        <!-- Test execution logger -->
+        <Logger name="com.airnz.tests" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestExecutionFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </Logger>
+        
+        <!-- API client logger -->
+        <Logger name="com.airnz.api" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ApiFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </Logger>
+        
+        <!-- Page objects logger -->
+        <Logger name="com.airnz.pages" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+        
+        <!-- Selenium WebDriver logging -->
+        <Logger name="org.openqa.selenium" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+        
+        <!-- RestAssured logging -->
+        <Logger name="io.restassured" level="WARN" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="ApiFile"/>
+        </Logger>
+        
+        <!-- Cucumber logging -->
+        <Logger name="io.cucumber" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestExecutionFile"/>
+        </Logger>
+        
+        <!-- TestNG logging -->
+        <Logger name="org.testng" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="TestExecutionFile"/>
+        </Logger>
+        
+        <!-- WebDriverManager logging -->
+        <Logger name="io.github.bonigarcia" level="INFO" additivity="false">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+        
+        <!-- Apache HTTP Client (used by RestAssured) -->
+        <Logger name="org.apache.http" level="WARN" additivity="false">
+            <AppenderRef ref="ApiFile"/>
+        </Logger>
+        
+        <!-- Root logger -->
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+            <AppenderRef ref="ErrorFile"/>
+        </Root>
+    </Loggers>
+</Configuration>

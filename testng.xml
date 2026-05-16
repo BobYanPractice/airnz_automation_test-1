@@ -1,0 +1,43 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="AirNZ Automation Test Suite" parallel="classes" thread-count="3">
+    
+    <listeners>
+        <listener class-name="com.airnz.core.listeners.TestListener"/>
+    </listeners>
+    
+    <!-- Smoke Tests -->
+    <test name="Smoke Tests">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.airnz.tests.*"/>
+        </packages>
+    </test>
+    
+    <!-- UI Tests -->
+    <test name="UI Tests">
+        <classes>
+            <class name="com.airnz.tests.ui.LoginTest"/>
+            <class name="com.airnz.tests.ui.BookingTest"/>
+        </classes>
+    </test>
+    
+    <!-- API Tests -->
+    <test name="API Tests">
+        <classes>
+            <class name="com.airnz.tests.api.LoginApiTest"/>
+            <class name="com.airnz.tests.api.BookingAPI"/>
+        </classes>
+    </test>
+    
+    <!-- BDD Tests -->
+    <test name="BDD Tests">
+        <classes>
+            <class name="com.airnz.tests.bdd.runners.TestRunner"/>
+        </classes>
+    </test>
+    
+</suite>

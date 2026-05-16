@@ -1,0 +1,117 @@
+# Air New Zealand Automation Test - Git Ignore
+
+# Compiled class files
+*.class
+bin/
+
+# Log files
+*.log
+logs/*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.metadata
+.classpath
+.project
+.settings/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.recommenders
+
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code
+.vscode/
+
+# OS-specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Reports (keep directory, ignore contents)
+reports/*
+!reports/.gitkeep
+reports/screenshots/*
+reports/cucumber-reports/*
+
+# Logs (keep directory, ignore contents)
+logs/*
+!logs/.gitkeep
+
+# Test output
+test-output/
+allure-results/
+
+# Screenshots
+*.png
+*.jpg
+*.jpeg
+!src/com/airnz/resources/**/*.png
+!src/com/airnz/resources/**/*.jpg
+
+# Downloads directory
+downloads/
+
+# Environment specific
+*.env
+.env.local
+.env.*.local
+secrets.properties
+
+# Temporary files
+*.tmp
+*.temp
+~$*
+
+# IDE specific project files
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# Gradle (if used)
+.gradle/
+build/
+
+# Node modules (if any frontend)
+node_modules/
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Allure
+allure-report/
