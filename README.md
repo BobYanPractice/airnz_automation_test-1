@@ -1,6 +1,6 @@
 # Air New Zealand interview take-home assignment.
 
-A professional, scalable, and maintainable test automation framework for Air New Zealand web application. This framework supports UI testing, API testing, and BDD (Behavior-Driven Development) with Cucumber.
+A professional, scalable, and maintainable test automation framework for the Air New Zealand web application. The framework supports UI testing, API testing, and BDD (Behavior-Driven Development) using Cucumber, with AI-assisted development and automation capabilities.
 
 ## 📋 Table of Contents
 
