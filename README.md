@@ -67,7 +67,7 @@ A professional, scalable, and maintainable test automation framework for Air New
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/airnz/automation-test.git
+git clone [https://github.com/airnz/automation-test.git](https://github.com/bianyan417/airnz_automation_test.git)
 cd automation-test
 ```
 
